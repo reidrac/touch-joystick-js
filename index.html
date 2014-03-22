@@ -23,15 +23,11 @@
 	<script type="text/javascript">
 
 var canvas, ctx, touchctl;
-var then = 0;
 
-var loop = function(now) {
-	var dt = Math.min(1000/60, now-then);
+var loop = function() {
 
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
-
 	touchctl.draw(ctx);
-	then = now;
 
 	// show states	
 	document.getElementById("on").value = touchctl.on;
