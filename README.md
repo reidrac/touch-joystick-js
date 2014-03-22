@@ -8,7 +8,7 @@ canvas context.
 
 It updates three states:
 
- - on (true/false): whether the joystick is no or not.
+ - on (true/false): whether the joystick is on or not.
  - x (-1, 0, 1): position of the x axis (left, center, right).
  - y (-1, 0, 1): position of the y axis (up, center, down).
 
