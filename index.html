@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+	<title>flax</title>
+	<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+	<script type="text/javascript" src="touch.js"></script>
+	<style type="text/css">
+		body {
+			background-color: #ccc;
+			color: #fff;
+			padding: 0;
+			margin: 0;
+			line-height: 0;
+			text-align: center;
+		}
+		input {
+			width: 4em;
+		}
+		#touch {
+			background-color: #000;
+		}
+	</style>
+	<script type="text/javascript">
+
+var canvas, ctx, touchctl;
+var then = 0;
+
+var loop = function(now) {
+	var dt = Math.min(1000/60, now-then);
+
+	ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+	touchctl.draw(ctx);
+	then = now;
+
+	// show states	
+	document.getElementById("on").value = touchctl.on;
+	document.getElementById("x").value = touchctl.x;
+	document.getElementById("y").value = touchctl.y;
+	
+	requestAnimationFrame(loop);
+};
+
+window.onload = function() {
+
+	canvas = document.getElementById("touch");
+	if(canvas.getContext) {
+
+		canvas.width = 480;
+		canvas.height = 480;
+		touchctl = TouchController(canvas);
+	
+		ctx = canvas.getContext("2d");
+
+		requestAnimationFrame(loop);
+	} else {
+		canvas.insertAdjacentHTML("afterend", "<p>This page requires canvas 2D support in your browser!</p>");
+	}
+};
+
+	</script>
+	</head>
+	<body>
+		<canvas id="touch"></canvas>
+		<p>
+			On: <input id="on" type="text" value="">
+			X: <input id="x" type="text" value="">
+			Y: <input id="y" type="text" value="">
+		</p>
+	</body>
+</html>
